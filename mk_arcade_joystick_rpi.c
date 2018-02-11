@@ -43,7 +43,7 @@ MODULE_DESCRIPTION("Freeplay GPIO Arcade Joystick Driver");
 MODULE_LICENSE("GPL");
 
 #define MK_MAX_DEVICES		2
-#define MK_MAX_BUTTONS      13
+#define MK_MAX_BUTTONS      15
 
 #ifdef RPI2
 #define PERI_BASE        0x3F000000
@@ -156,7 +156,7 @@ static const int mk_arcade_gpio_maps_bplus[] = {11, 5,    6,    13,    19,    26
 static const int mk_arcade_gpio_maps_tft[] = {21, 13,    26,    19,    5,    6,     22, 4, 20, 17, 27,  16, 12};
 
 static const short mk_arcade_gpio_btn[] = {
-    BTN_START, BTN_SELECT, BTN_A, BTN_B, BTN_TR, BTN_Y, BTN_X, BTN_TL, BTN_MODE
+    BTN_START, BTN_SELECT, BTN_A, BTN_B, BTN_TR, BTN_Y, BTN_X, BTN_TL, BTN_MODE, BTN_TR2, BTN_TL2
 };
 
 static const char *mk_names[] = {
@@ -381,7 +381,7 @@ static int __init mk_setup_pad(struct mk *mk, int idx, int pad_type_arg) {
             pr_err("Custom device needs gpio argument\n");
             return -EINVAL;
         } else if(gpio_cfg2.nargs != MK_MAX_BUTTONS){
-            pr_err("Invalid gpio argument\n", pad_type);
+            pr_err("Invalid gpio argument\n");
             return -EINVAL;
         }
         
